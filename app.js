@@ -1,4 +1,3 @@
-
 function mergeStats(data1, data2) {
   // Helper: find first "count" stat or create a default one
   const getCountStats = (stats) => {
@@ -36,7 +35,7 @@ function mergeStats(data1, data2) {
   return [count1];
 }
 // === Fetch JSON from server "proxy" into PoE trade link ===
-const SERVER_URL = "http://localhost:3000/trade?link=";
+const SERVER_URL = "http://tradeengine-production.up.railway.app" + "/trade?link=";
 
 async function fetchJsonFromLink(link) {
   if (link.startsWith("http")) {
@@ -95,13 +94,4 @@ async function MergeJsons () {
 
 
     document.getElementById("json3").value = finalUrl; 
-}
-
-
-
-
-function BetterLog(_obj){
-  str = JSON.stringify(_obj);
-  str = JSON.stringify(_obj, null, 4); // (Optional) beautiful indented output.
-  console.log(str); // Logs output to dev tools console.
 }
