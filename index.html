@@ -1,9 +1,27 @@
-<!DOCTYPE html> $0
+<!DOCTYPE html>
+<head>
+    <title>Trade Combiner</title>
+    <link rel="stylesheet" href="stylesheet.css">
+
+</head>
+<Body>    
+    <!-- <form action="/action_page.php"> -->
+        <!-- <textarea class="json" id="json1" rows="6" cols="50">https://www.pathofexile.com/trade/search/Mercenaries/?q=%7B%22query%22%3A%7B%22status%22%3A%7B%22option%22%3A%22online%22%7D%2C%22stats%22%3A%5B%7B%22type%22%3A%22count%22%2C%22filters%22%3A%5B%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%5D%2C%22value%22%3A%7B%22min%22%3A1%7D%7D%5D%7D%2C%22sort%22%3A%7B%22price%22%3A%22asc%22%7D%7D</textarea> -->
+        <textarea class="json" id="json1" rows="6" cols="50">https://www.pathofexile.com/trade/search/Mercenaries/rPb3na5GuQ</textarea>
+
+        <textarea class="json" id="json2" rows="6" cols="50">https://www.pathofexile.com/trade/search/Mercenaries/?q=%7B%22query%22%3A%7B%22status%22%3A%7B%22option%22%3A%22online%22%7D%2C%22stats%22%3A%5B%7B%22type%22%3A%22count%22%2C%22filters%22%3A%5B%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%5D%2C%22value%22%3A%7B%22min%22%3A1%7D%7D%5D%7D%2C%22sort%22%3A%7B%22price%22%3A%22asc%22%7D%7D</textarea>
+        <!-- <textarea class="json" id="json2" rows="6" cols="50">https://www.pathofexile.com/trade/search/Mercenaries/vmOkkp9fE</textarea> -->
+
+
+        <textarea class="json" id="json3" rows="6" cols="50">OUTPUT</textarea> 
+        <input id="mergeButton" type="submit" onclick="MergeJsons()" value="Merge">
+        
+
+    <!-- </form> -->
+
+    
 
 
 
-<head>test</head>
-
-
-
-
+    <script src="app.js" defer></script>
+</Body>

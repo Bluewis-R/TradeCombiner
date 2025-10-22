@@ -1,0 +1,87 @@
+const decodeTradeLink = (tradeLink) => {
+    const match = tradeLink.match(/\?q=([^#]+)/);
+    if (!match) throw new Error("Invalid trade link: ?q= not found");
+    return decodeURIComponent(match[1]);
+};
+
+const mergeStats = (data1, data2) => {
+
+    const stats1 = data1.query.stats || [];
+    const stats2 = data2.query.stats || [];
+
+    if (!stats1.length) return stats2;
+    if (!stats2.length) return stats1;
+
+    // Take first "type: count" object from data1
+    const countObj = stats1[0];
+    const filtersCombined = [...(countObj.filters || [])];
+
+    // Add filters from data2
+    filtersCombined.push(...(stats2[0].filters || []));
+
+    // Deduplicate based on id + min/max
+    const seen = new Set();
+    const uniqueFilters = filtersCombined.filter(f => {
+        const key = `${f.id}:${f.value.min}:${f.value.max}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+
+    countObj.filters = uniqueFilters;
+    return [countObj];
+};
+
+// // === Example trade URLs ===
+// const tradeLink1 = "YOUR_FIRST_LINK_HERE";
+// const tradeLink2 = "YOUR_SECOND_LINK_HERE";    
+const tradeLink1 = "https://www.pathofexile.com/trade/search/Mercenaries/?q=%7B%22query%22%3A%7B%22status%22%3A%7B%22option%22%3A%22online%22%7D%2C%22stats%22%3A%5B%7B%22type%22%3A%22count%22%2C%22filters%22%3A%5B%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A82560%2C%22max%22%3A82560%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A83960%2C%22max%22%3A83960%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A134400%2C%22max%22%3A134400%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A110540%2C%22max%22%3A110540%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%5D%2C%22value%22%3A%7B%22min%22%3A1%7D%7D%5D%7D%2C%22sort%22%3A%7B%22price%22%3A%22asc%22%7D%7D"
+const tradeLink2 = "https://www.pathofexile.com/trade/search/Mercenaries/?q=%7B%22query%22%3A%7B%22status%22%3A%7B%22option%22%3A%22online%22%7D%2C%22stats%22%3A%5B%7B%22type%22%3A%22count%22%2C%22filters%22%3A%5B%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A86080%2C%22max%22%3A86080%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A55380%2C%22max%22%3A55380%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A139520%2C%22max%22%3A139520%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcadiro%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fvictario%22%7D%2C%7B%22value%22%3A%7B%22min%22%3A102860%2C%22max%22%3A102860%7D%2C%22id%22%3A%22explicit%2Epseudo%5Ftimeless%5Fjewel%5Fcaspiro%22%7D%5D%2C%22value%22%3A%7B%22min%22%3A1%7D%7D%5D%7D%2C%22sort%22%3A%7B%22price%22%3A%22asc%22%7D%7D"
+
+function MergeJsons() {
+    a = document.getElementById("json1").value; 
+    b = document.getElementById("json2").value;
+    const data1 = JSON.parse(decodeTradeLink(a));
+    const data2 = JSON.parse(decodeTradeLink(b));
+
+    
+
+
+
+    console.log(Math.round(0.9));
+    result = Math.floor(Math.random() * max)
+    document.getElementById("json3").innerHTML = result; 
+}
+
+
+
+
+const combined = { ...data1 }; // shallow copy
+combined.query.stats = mergeStats(data1, data2);
+
+
+
+
+
+
+
+
+// Decode JSON from URLs
+const data1 = JSON.parse(decodeTradeLink(tradeLink1));
+const data2 = JSON.parse(decodeTradeLink(tradeLink2));
+
+// Merge stats into a single "count" object
+const combined = { ...data1 }; // shallow copy
+combined.query.stats = mergeStats(data1, data2);
+
+// Encode JSON and create final trade URL
+const league = "Mercenaries";
+const jsonStr = JSON.stringify(combined);
+const encoded = encodeURIComponent(jsonStr);
+const tradeUrl = `https://www.pathofexile.com/trade/search/${league}/?q=${encoded}`;
+
+// Output
+console.log("✅ Combined Trade URL:");
+console.log(tradeUrl);
+console.log("\n🔹 Combined JSON:");
+console.log(JSON.stringify(combined, null, 2));

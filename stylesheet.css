@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:900');
+
+html {
+    overflow-y: auto;       /* hidden is no scrollbar, auto is normal */
+}
+
+html, body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 5px;
+    color: #D3DDE6;
+}
+
+
+
+.json {
+    padding: 5px;
+}
