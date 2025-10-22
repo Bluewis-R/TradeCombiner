@@ -35,7 +35,9 @@ function mergeStats(data1, data2) {
   return [count1];
 }
 // === Fetch JSON from server "proxy" into PoE trade link ===
-const SERVER_URL = "http://tradeengine-production.up.railway.app" + "/trade?link=";
+// const SERVER_URL = "http://localhost:3000/trade?link=";
+const SERVER_URL = "https://tradeengine-production.up.railway.app" + "/trade?link=";
+
 
 async function fetchJsonFromLink(link) {
   if (link.startsWith("http")) {
